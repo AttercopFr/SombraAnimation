@@ -1,0 +1,253 @@
+########  COLORS  #################################################################################
+
+ORANGE='\033[38;5;172m'
+PINK='\033[0;35m'
+RESET='\033[0m'
+
+
+########  FUNCTIONS  ##############################################################################
+
+findcpu(){
+        grep 'model name' /proc/cpuinfo  | uniq | awk -F':' '{ print $2}'
+}
+
+upTime(){
+        grep ' ' /proc/uptime | awk -F' ' '{ print $1}'
+}
+
+findkernelversion(){
+        uname -mrs
+}
+findOS(){
+        uname
+}
+host(){
+        hostname
+}
+
+totalmem(){
+        grep -i 'memtotal' /proc/meminfo | awk -F':' '{ print $2}'
+}
+mem=$(cat /proc/meminfo | grep MemTotal | head -n 1 | awk '/[0-9]/ {print $2}')
+
+function typewriter
+{
+    text="$1"
+    delay="$2"
+
+    for i in $(seq 0 $(expr length "${text}")) ; do
+        echo -ne "${text:$i:1}"
+        sleep 0
+    done
+}
+########  INFO  ################################################################################
+
+infos(){
+  echo -ne "`tput sgr0`${PINK}
+`tput smso` Sombra Terminal Info                              `tput rmso`
+
+ ${PINK} `tput bold`Processor:`tput sgr0`$(findcpu)   
+ ${PINK} `tput bold`Memoria RAM:`tput sgr0` $[$mem/1024] MB
+ ${PINK} `tput bold`OS:`tput sgr0` $(findOS)
+ ${PINK} `tput bold`Kernel:`tput sgr0` $(findkernelversion)     
+ ${PINK} `tput bold`Hostname:`tput sgr0` $(host)
+
+${PINK}`tput smso` Monitoring Targets                              `tput rmso`
+
+ ${PINK} `tput bold`Athena status:`tput sgr0`    On          
+ ${PINK} `tput bold`Damaged:       `tput sgr0`   No     
+ ${PINK} `tput bold`Overwatch server:`tput sgr0` Off                             
+ ${PINK} `tput bold`Talon server:`tput sgr0`     On      
+
+ 
+${PINK}`tput smso` Date & Time                                       `tput rmso`
+ 
+ ${PINK} `tput bold`Date:`tput sgr0` $(date +"%A %d %B %Y")
+ ${PINK} `tput bold`Time:`tput sgr0` $(date +"%T")
+"
+
+}
+
+ #${PINK} `tput bold`Uptime:`tput sgr0` "%uptime"
+
+
+########  ART  #################################################################################
+
+apagando(){
+  echo -ne "${PINK}
+  APAGANDO LAS LUCES
+"                                                                                  
+}
+
+caveira(){
+echo "
+                          :PB@Bk:
+                      ,jB@@B@B@B@BBL.
+                   7G@B@B@BMMMMMB@B@B@Nr
+               :kB@B@@@MMOMOMOMOMMMM@B@B@B1,
+           :5@B@B@B@BBMMOMOMOMOMOMOMM@@@B@B@BBu.
+        70@@@B@B@B@BXBBOMOMOMOMOMOMMBMPB@B@B@B@B@Nr
+      G@@@BJ iB@B@@  OBMOMOMOMOMOMOM@2  B@B@B. EB@B@S
+      @@BM@GJBU.  iSuB@OMOMOMOMOMOMM@OU1:  .kBLM@M@B@
+      B@MMB@B       7@BBMMOMOMOMOMOBB@:       B@BMM@B
+      @@@B@B         7@@@MMOMOMOMM@B@:         @@B@B@
+      @@OLB.          BNB@MMOMOMM@BEB          rBjM@B
+      @@  @           M  OBOMOMM@q  M          .@  @@
+      @@OvB           B:u@MMOMOMMBJiB          .BvM@B
+      @B@B@J         0@B@MMOMOMOMB@B@u         q@@@B@
+      B@MBB@v       G@@BMMMMMMMMMMMBB@5       F@BMM@B
+      @BBM@BPNi   LMEB@OMMMM@B@MMOMM@BZM7   rEqB@MBB@
+      B@@@BM  B@B@B  qBMOMB@B@B@BMOMBL  B@B@B  @B@B@M
+       J@@@@PB@B@B@B7G@OMBB.   ,@MMM@qLB@B@@@BqB@BBv
+          iGB@,i0@M@B@MMO@E  :  M@OMM@@@B@Pii@@N:
+             .   B@M@B@MMM@B@B@B@MMM@@@M@B
+                 @B@B.i@MBB@B@B@@BM@::B@B@
+                 B@@@ .B@B.:@B@ :B@B  @B@O
+                   :0 r@B@  B@@ .@B@: P:
+                       vMB :@B@ :BO7
+                           ,B@B
+"
+}
+
+caveira1(){
+echo "
+   J@@@@PB@B@B@B7G@OMBB.   ,@MMM@qLB@B@@@BqB@BBv
+        iGB@,i0@M@B@MMO@E  :  M@OMM@@@B@Pii@@N:
+          .   B@M@B@MMM@B@B@B@MMM@@@M@B
+             @B@B.i@MBB@B@B@@BM@::B@B@
+              B@@@ .B@B.:@B@ :B@B  @B@O
+                     :0 r@B@  B@@ .@B@: P:
+                         vMB :@B@ :BO7
+                            ,B@B
+         @@BM@GJBU.  iSuB@OMOMOMOMOMOMM@OU1:  .kBLM@M@B@
+        B@MMB@B       7@BBMMOMOMOMOMOBB@:       B@BMM@B
+      @@@B@B         7@@@MMOMOMOMM@B@:         @@B@B@
+      @@OLB.          BNB@MMOMOMM@BEB          rBjM@B
+      @@  @           M  OBOMOMM@q  M          .@  @@
+      @@OvB           B:u@MMOMOMMBJiB          .BvM@B
+         @B@B@J         0@B@MMOMOMOMB@B@u         q@@@B@
+         B@MBB@v       G@@BMMMMMMMMMMMBB@5       F@BMM@B
+         @BBM@BPNi   LMEB@OMMMM@B@MMOMM@BZM7   rEqB@MBB@
+             B@@@BM  B@B@B  qBMOMB@B@B@BMOMBL  B@B@B  @B@B@M
+                                 :PB@Bk:
+                             ,jB@@B@B@B@BBL.
+                   7G@B@B@BMMMMMB@B@B@Nr
+                      :kB@B@@@MMOMOMOMOMMMM@B@B@B1,
+    :5@B@B@B@BBMMOMOMOMOMOMOMM@@@B@B@BBu.
+ 70@@@B@B@B@BXBBOMOMOMOMOMOMMBMPB@B@B@B@B@Nr
+G@@@BJ iB@B@@  OBMOMOMOMOMOMOM@2  B@B@B. EB@B@S
+"
+}
+
+
+caveira2(){
+echo "
+                                 :PB@Bk:
+                             ,jB@@B@B@B@BBL.
+                   7G@B@B@BMMMMMB@B@B@Nr
+                      :kB@B@@@MMOMOMOMOMMMM@B@B@B1,
+    :5@B@B@B@BBMMOMOMOMOMOMOMM@@@B@B@BBu.
+ 70@@@B@B@B@BXBBOMOMOMOMOMOMMBMPB@B@B@B@B@Nr
+G@@@BJ iB@B@@  OBMOMOMOMOMOMOM@2  B@B@B. EB@B@S
+         @@BM@GJBU.  iSuB@OMOMOMOMOMOMM@OU1:  .kBLM@M@B@
+        B@MMB@B       7@BBMMOMOMOMOMOBB@:       B@BMM@B
+      @@@B@B         7@@@MMOMOMOMM@B@:         @@B@B@
+      @@OLB.          BNB@MMOMOMM@BEB          rBjM@B
+      @@  @           M  OBOMOMM@q  M          .@  @@
+      @@OvB           B:u@MMOMOMMBJiB          .BvM@B
+         @B@B@J         0@B@MMOMOMOMB@B@u         q@@@B@
+         B@MBB@v       G@@BMMMMMMMMMMMBB@5       F@BMM@B
+         @BBM@BPNi   LMEB@OMMMM@B@MMOMM@BZM7   rEqB@MBB@
+             B@@@BM  B@B@B  qBMOMB@B@B@BMOMBL  B@B@B  @B@B@M
+   J@@@@PB@B@B@B7G@OMBB.   ,@MMM@qLB@B@@@BqB@BBv
+        iGB@,i0@M@B@MMO@E  :  M@OMM@@@B@Pii@@N:
+          .   B@M@B@MMM@B@B@B@MMM@@@M@B
+             @B@B.i@MBB@B@B@@BM@::B@B@
+              B@@@ .B@B.:@B@ :B@B  @B@O
+                     :0 r@B@  B@@ .@B@: P:
+                         vMB :@B@ :BO7
+                            ,B@B
+"
+}
+
+caveira3(){
+echo "
+                    :PB@Bk:
+                 ,jB@@B@B@B@BBL.
+              7G@B@B@BMMMMMB@B@B@Nr
+          :kB@B@@@MMOMOMOMOMMMM@B@B@B1,
+            :5@B@B@B@BBMMOMOMOMOMOMOMM@@@B@B@BBu.
+            70@@@B@B@B@BXBBOMOMOMOMOMOMMBMPB@B@B@B@B@Nr
+         G@@@BJ iB@B@@  OBMOMOMOMOMOMOM@2  B@B@B. EB@B@S
+         @@BM@GJBU.  iSuB@OMOMOMOMOMOMM@OU1:  .kBLM@M@B@
+  B@MMB@B       7@BBMMOMOMOMOMOBB@:       B@BMM@B
+   @@@B@B         7@@@MMOMOMOMM@B@:         @@B@B@
+      @@OLB.          BNB@MMOMOMM@BEB          rBjM@B
+       @@  @           M  OBOMOMM@q  M          .@  @@
+     @@OvB           B:u@MMOMOMMBJiB          .BvM@B
+     @B@B@J         0@B@MMOMOMOMB@B@u         q@@@B@
+         B@MBB@v       G@@BMMMMMMMMMMMBB@5       F@BMM@B
+         @BBM@BPNi   LMEB@OMMMM@B@MMOMM@BZM7   rEqB@MBB@
+  B@@@BM  B@B@B  qBMOMB@B@B@BMOMBL  B@B@B  @B@B@M
+     J@@@@PB@B@B@B7G@OMBB.   ,@MMM@qLB@B@@@BqB@BBv
+         iGB@,i0@M@B@MMO@E  :  M@OMM@@@B@Pii@@N:
+         .   B@M@B@MMM@B@B@B@MMM@@@M@B
+                   @B@B.i@MBB@B@B@@BM@::B@B@
+                     B@@@ .B@B.:@B@ :B@B  @B@O
+                   :0 r@B@  B@@ .@B@: P:
+                        vMB :@B@ :BO7
+                           ,B@B
+"
+}
+########  ANIMATION  #############################################################################
+animation(){
+  echo -ne "\033[2J"
+  echo -ne "\033[1;1H"
+
+  echo -ne "\e[35m $(caveira)"
+  sleep 0.2
+  i=0
+  while [ $i -lt 3 ]; do
+    echo -ne "\033[2J"
+    echo -ne "\033[1;1H"
+    echo "$(caveira3)"
+  sleep 0.05
+    echo -ne "\033[2J"
+    echo -ne "\033[1;1H"
+    echo "$(caveira)"
+  sleep 0.05
+    echo -ne "\033[2J"
+    echo -ne "\033[1;1H"
+    echo "$(caveira1)"
+  sleep 0.05
+    echo -ne "\033[2J"
+    echo -ne "\033[1;1H"
+    echo "$(caveira)"
+  sleep 0.05  
+    echo -ne "\033[2J"
+    echo -ne "\033[1;1H"
+    echo "$(caveira2)"
+  sleep 0.03
+    let i=i+1
+  done
+  echo "$(caveira)" 
+  echo -ne "\033[2J"
+echo -ne "\033[1;1H"
+}
+
+######### CODE #################################################################################
+echo -ne "\033[2J"
+echo -ne "\033[1;1H"
+animation
+echo -ne "\033[1;1H `tput rs1`"
+
+typewriter "$(infos)
+
+PRESS 'ENTER' TO EXIT
+"
+read -s b
+sleep 0.5
+animation
+echo -ne "tput sgr0" 
+echo -ne "\033[2J"
+echo -ne "\033[1;1H `tput rs1`"
